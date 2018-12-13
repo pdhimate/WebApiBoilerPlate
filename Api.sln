@@ -1,0 +1,153 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{56EF37C1-741B-477D-A095-899B745051A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Data", "Api.Data\Api.Data.csproj", "{B282B2FE-8ED0-4267-AC7F-AA39D71A1650}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.BusinessEntities", "Api.BusinessEntities\Api.BusinessEntities.csproj", "{41D8DFF8-AD7D-4699-B87D-B8006E614A82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.BusinessService", "Api.BusinessService\Api.BusinessService.csproj", "{6F9497FE-26B2-4282-B3B0-8F40CD08806D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyResolver", "DependencyResolver\DependencyResolver.csproj", "{CF03FB59-4486-415E-8434-522E5E53E2A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.BusinessService.UnitTests", "Api.BusinessService.Tests\Api.BusinessService.UnitTests.csproj", "{BF09A961-142F-4ABA-8035-2ABA2A9FCDA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.IntegrationTests", "Api.Tests\Api.IntegrationTests.csproj", "{0B3EEFC9-88A5-44DF-AC51-F653244C8604}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.TestHelper", "Api.TestHelper\Api.TestHelper.csproj", "{AE64A6D7-2C79-4D03-A282-9591099D2E80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Data.IntegrationTests", "Api.Data.Tests\Api.Data.IntegrationTests.csproj", "{386D9C7A-4313-464A-B73A-CCC9ACE3A541}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.UnitTests", "Api.UnitTests\Api.UnitTests.csproj", "{B1CBAACC-B675-4F07-87FF-CDE37D94BFB1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Host", "Host", "{6B18CE57-E096-402C-8059-D2D88C5594EF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{DFEA9040-4242-4572-BD26-D079043E2CB6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{7F661CAB-1840-43BC-BC3B-230344FC1121}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{86BBBFCD-30DE-49FC-8C25-115E0C42E3B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Security", "Api.Security\Api.Security.csproj", "{69D70A0D-9A58-4235-A8DA-235CC381151A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{56EF37C1-741B-477D-A095-899B745051A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56EF37C1-741B-477D-A095-899B745051A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56EF37C1-741B-477D-A095-899B745051A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56EF37C1-741B-477D-A095-899B745051A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B282B2FE-8ED0-4267-AC7F-AA39D71A1650}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B282B2FE-8ED0-4267-AC7F-AA39D71A1650}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B282B2FE-8ED0-4267-AC7F-AA39D71A1650}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B282B2FE-8ED0-4267-AC7F-AA39D71A1650}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41D8DFF8-AD7D-4699-B87D-B8006E614A82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41D8DFF8-AD7D-4699-B87D-B8006E614A82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41D8DFF8-AD7D-4699-B87D-B8006E614A82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41D8DFF8-AD7D-4699-B87D-B8006E614A82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F9497FE-26B2-4282-B3B0-8F40CD08806D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F9497FE-26B2-4282-B3B0-8F40CD08806D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F9497FE-26B2-4282-B3B0-8F40CD08806D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F9497FE-26B2-4282-B3B0-8F40CD08806D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF03FB59-4486-415E-8434-522E5E53E2A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF03FB59-4486-415E-8434-522E5E53E2A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF03FB59-4486-415E-8434-522E5E53E2A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF03FB59-4486-415E-8434-522E5E53E2A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF09A961-142F-4ABA-8035-2ABA2A9FCDA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF09A961-142F-4ABA-8035-2ABA2A9FCDA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF09A961-142F-4ABA-8035-2ABA2A9FCDA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF09A961-142F-4ABA-8035-2ABA2A9FCDA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B3EEFC9-88A5-44DF-AC51-F653244C8604}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B3EEFC9-88A5-44DF-AC51-F653244C8604}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B3EEFC9-88A5-44DF-AC51-F653244C8604}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B3EEFC9-88A5-44DF-AC51-F653244C8604}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE64A6D7-2C79-4D03-A282-9591099D2E80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE64A6D7-2C79-4D03-A282-9591099D2E80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE64A6D7-2C79-4D03-A282-9591099D2E80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE64A6D7-2C79-4D03-A282-9591099D2E80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{386D9C7A-4313-464A-B73A-CCC9ACE3A541}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{386D9C7A-4313-464A-B73A-CCC9ACE3A541}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{386D9C7A-4313-464A-B73A-CCC9ACE3A541}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{386D9C7A-4313-464A-B73A-CCC9ACE3A541}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1CBAACC-B675-4F07-87FF-CDE37D94BFB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1CBAACC-B675-4F07-87FF-CDE37D94BFB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1CBAACC-B675-4F07-87FF-CDE37D94BFB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1CBAACC-B675-4F07-87FF-CDE37D94BFB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69D70A0D-9A58-4235-A8DA-235CC381151A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69D70A0D-9A58-4235-A8DA-235CC381151A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69D70A0D-9A58-4235-A8DA-235CC381151A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69D70A0D-9A58-4235-A8DA-235CC381151A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{56EF37C1-741B-477D-A095-899B745051A2} = {6B18CE57-E096-402C-8059-D2D88C5594EF}
+		{B282B2FE-8ED0-4267-AC7F-AA39D71A1650} = {86BBBFCD-30DE-49FC-8C25-115E0C42E3B6}
+		{41D8DFF8-AD7D-4699-B87D-B8006E614A82} = {7F661CAB-1840-43BC-BC3B-230344FC1121}
+		{6F9497FE-26B2-4282-B3B0-8F40CD08806D} = {7F661CAB-1840-43BC-BC3B-230344FC1121}
+		{CF03FB59-4486-415E-8434-522E5E53E2A1} = {DFEA9040-4242-4572-BD26-D079043E2CB6}
+		{BF09A961-142F-4ABA-8035-2ABA2A9FCDA0} = {7F661CAB-1840-43BC-BC3B-230344FC1121}
+		{0B3EEFC9-88A5-44DF-AC51-F653244C8604} = {6B18CE57-E096-402C-8059-D2D88C5594EF}
+		{AE64A6D7-2C79-4D03-A282-9591099D2E80} = {DFEA9040-4242-4572-BD26-D079043E2CB6}
+		{386D9C7A-4313-464A-B73A-CCC9ACE3A541} = {86BBBFCD-30DE-49FC-8C25-115E0C42E3B6}
+		{B1CBAACC-B675-4F07-87FF-CDE37D94BFB1} = {6B18CE57-E096-402C-8059-D2D88C5594EF}
+		{69D70A0D-9A58-4235-A8DA-235CC381151A} = {DFEA9040-4242-4572-BD26-D079043E2CB6}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 12
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://bitartist.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Api\\Api.csproj
+		SccProjectTopLevelParentUniqueName1 = Api.sln
+		SccProjectName1 = Api
+		SccLocalPath1 = Api
+		SccProjectUniqueName2 = Api.Data\\Api.Data.csproj
+		SccProjectTopLevelParentUniqueName2 = Api.sln
+		SccProjectName2 = Api.Data
+		SccLocalPath2 = Api.Data
+		SccProjectUniqueName3 = Api.BusinessEntities\\Api.BusinessEntities.csproj
+		SccProjectTopLevelParentUniqueName3 = Api.sln
+		SccProjectName3 = Api.BusinessEntities
+		SccLocalPath3 = Api.BusinessEntities
+		SccProjectUniqueName4 = Api.BusinessService\\Api.BusinessService.csproj
+		SccProjectTopLevelParentUniqueName4 = Api.sln
+		SccProjectName4 = Api.BusinessService
+		SccLocalPath4 = Api.BusinessService
+		SccProjectUniqueName5 = DependencyResolver\\DependencyResolver.csproj
+		SccProjectTopLevelParentUniqueName5 = Api.sln
+		SccProjectName5 = DependencyResolver
+		SccLocalPath5 = DependencyResolver
+		SccProjectUniqueName6 = Api.TestHelper\\Api.TestHelper.csproj
+		SccProjectTopLevelParentUniqueName6 = Api.sln
+		SccProjectName6 = Api.TestHelper
+		SccLocalPath6 = Api.TestHelper
+		SccProjectUniqueName7 = Api.Data.Tests\\Api.Data.IntegrationTests.csproj
+		SccProjectTopLevelParentUniqueName7 = Api.sln
+		SccProjectName7 = Api.Data.Tests
+		SccLocalPath7 = Api.Data.Tests
+		SccProjectUniqueName8 = Api.Tests\\Api.IntegrationTests.csproj
+		SccProjectTopLevelParentUniqueName8 = Api.sln
+		SccProjectName8 = Api.Tests
+		SccLocalPath8 = Api.Tests
+		SccProjectUniqueName9 = Api.BusinessService.Tests\\Api.BusinessService.UnitTests.csproj
+		SccProjectTopLevelParentUniqueName9 = Api.sln
+		SccProjectName9 = Api.BusinessService.Tests
+		SccLocalPath9 = Api.BusinessService.Tests
+		SccProjectUniqueName10 = Api.UnitTests\\Api.UnitTests.csproj
+		SccProjectTopLevelParentUniqueName10 = Api.sln
+		SccProjectName10 = Api.UnitTests
+		SccLocalPath10 = Api.UnitTests
+		SccProjectUniqueName11 = Api.Security\\Api.Security.csproj
+		SccProjectTopLevelParentUniqueName11 = Api.sln
+		SccProjectName11 = Api.Security
+		SccLocalPath11 = Api.Security
+	EndGlobalSection
+EndGlobal
