@@ -1,6 +1,7 @@
-﻿using Api.Data.Access.Repositories;
-using Api.Data.Access.Repositories.Security;
-using Api.Data.Models;
+﻿using Api.Data.Access.Repositories.Security;
+using Api.Data.CosmosDb.Helpers;
+using Api.Data.CosmosDb.Repositories;
+using Microsoft.Azure.Documents.Client;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
@@ -9,21 +10,43 @@ using System.IO;
 
 namespace Api.Data.Access
 {
-    public class EntityFrameworkUnitOfWork : IUnitOfWork, IDisposable
+    /// <summary>
+    /// Wraps SQL Server as well as CosmosDb contexts
+    /// </summary>
+    public class UnitOfWork : IUnitOfWork, IDisposable
     {
         #region Private members
 
         private readonly AppDatabaseContext _context;
 
+        private DocumentClient _documentClient;
+        /// <summary>
+        /// Cosmos db client
+        /// TODO: Explore whether we can reuse the same instance for all Cosmos Repositories
+        /// </summary>
+        private DocumentClient DocumentClient
+        {
+            get
+            {
+                if (_documentClient == null)
+                {
+                    _documentClient = CosmosDbHelper.GetDocumentClient();
+                }
+                return _documentClient;
+            }
+        }
+
         #endregion
 
-        public EntityFrameworkUnitOfWork()
+        public UnitOfWork()
         {
             _context = new AppDatabaseContext();
         }
 
         #region IUnitOfWork implementation
 
+        #region SQL Server repositories
+        
         #region Security
 
         private IUserRepository _appUserRepository;
@@ -110,11 +133,32 @@ namespace Api.Data.Access
 
         #endregion
 
+        #endregion
+
+        #region Cosmos Db Repositories
+
+        private ITextPostRepo textPostRepo;
+        public ITextPostRepo TextPostRepo
+        {
+            get
+            {
+                if (textPostRepo == null)
+                {
+                    textPostRepo = new TextPostRepo(DocumentClient);
+                }
+                return textPostRepo;
+            }
+        }
+
+        #endregion
+
         public int Save()
         {
             try
             {
                 return _context.SaveChanges();
+
+                // TODO figure out a way to commit cosmos db changes in a transactional fashion
             }
             catch (DbEntityValidationException e)
             {
@@ -152,6 +196,11 @@ namespace Api.Data.Access
                 {
                     Debug.WriteLine("UnitOfWork is being disposed");
                     _context.Dispose();
+
+                    if (_documentClient != null)
+                    {
+                        _documentClient.Dispose();
+                    }
                 }
             }
             disposed = true;

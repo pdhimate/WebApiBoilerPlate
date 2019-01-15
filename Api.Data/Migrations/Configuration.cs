@@ -12,6 +12,10 @@ namespace Api.Data.Migrations
     using Models.Master;
     using System.Configuration;
     using Security;
+    using Api.Data.CosmosDb.Models;
+    using Api.Data.CosmosDb.Repositories;
+    using Api.Data.CosmosDb.Helpers;
+    using System.Threading.Tasks;
 
     internal sealed class Configuration : DbMigrationsConfiguration<AppDatabaseContext>
     {
@@ -23,13 +27,18 @@ namespace Api.Data.Migrations
 
         protected override void Seed(AppDatabaseContext context)
         {
+            // SQL server seeding
             InsertMandatoryData(context);
             InsertAdminUser(context);
+
+            // Cosmos db seeding
+            InsertAdminUserPost(context);
         }
 
         #region Private helpers
 
         #region Addresses master data
+
         private readonly IReadOnlyCollection<string> _countries = new List<string>
         {
             "India",
@@ -51,6 +60,7 @@ namespace Api.Data.Migrations
             "Nasik",
             "Mumbai",
         };
+
         #endregion
 
         /// <summary>
@@ -149,6 +159,7 @@ namespace Api.Data.Migrations
             #endregion
         }
 
+        private readonly string AdminEmail = "YourAdminUserEmail@SomeEmailProvider.com";
         private void InsertAdminUser(AppDatabaseContext context)
         {
             var userStore = new UserStore<AppUser, AppRole, long, ExternalUserLogin, AppUserAppRoleMapping, AppUserClaim>(context);
@@ -158,7 +169,7 @@ namespace Api.Data.Migrations
             var user = new AppUser
             {
                 UserName = Data.Constants.DefaultUsers.AdminUserName,
-                Email = "YourAdminUserEmail@SomeEmailProvider.com",
+                Email = AdminEmail,
                 EmailConfirmed = true,
                 FirstName = "Administrator",
                 CreatedOnUtc = DateTime.UtcNow,
@@ -178,6 +189,25 @@ namespace Api.Data.Migrations
             {
                 context.AppUsersRolesMap.Add(usersRolesMap);
                 context.SaveChanges();
+            }
+        }
+
+        private readonly string AdminUserFirstPostGUID = "DA5B3550-659A-4DA2-A5E1-27353F52AA64";
+        private void InsertAdminUserPost(AppDatabaseContext context)
+        {
+            var adminUser = context.Users.First(u => u.Email == AdminEmail);
+
+            using (var client = CosmosDbHelper.GetDocumentClient())
+            {
+                var postRepo = new TextPostRepo(client);
+                var existingPost = new TextPost
+                {
+                    CreatedByUserId = adminUser.Id,
+                    CreatedByUserName = adminUser.FirstName + adminUser.LastName,
+                    Note = "This is the first text post, posted on behalf of the admin user while seeding the database!",
+                    Id = AdminUserFirstPostGUID
+                };
+                postRepo.InsertOrUpdateAsync(existingPost).Wait();
             }
         }
 

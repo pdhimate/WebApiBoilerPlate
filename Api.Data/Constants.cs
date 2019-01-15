@@ -40,5 +40,31 @@
             public static string AdminUserName { get { return "Admin"; } }
         }
 
+        public class CosmosDb
+        {
+            /// <summary>
+            /// Url of the Azure Cosmos db.
+            /// Must be present in the web.config/AppSettings
+            /// </summary>
+            public const string CosmosDbUriKey = "CosmosDbUri";
+
+            /// <summary>
+            /// Primary key of the Azure Cosmos db.
+            /// Must be present in the web.config/AppSettings
+            /// </summary>
+            public const string CosmosDbPrimaryKey = "CosmosDbPrimaryKey";
+
+            /// <summary>
+            /// The Id or the name of the Cosmos database
+            /// </summary>
+            public static string DatabaseId { get { return "YourDocumentStore"; } }
+
+            public static string PostsCollectionName { get { return "PostsCollection"; } }
+
+            /// <summary>
+            /// The PageSize used during pagination for CosmosDb.
+            /// </summary>
+            public static int PaginationPageSize { get { return 20; } }
+        }
     }
 }

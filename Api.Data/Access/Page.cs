@@ -48,4 +48,33 @@ namespace Api.Data.Access
 
         #endregion
     }
+
+    /// <summary>
+    /// Provides for paginated results for Cosmos db.
+    /// </summary>
+    /// <typeparam name="TEntity"></typeparam>
+    public class PageC<TEntity>
+    {
+        public PageC(IEnumerable<TEntity> items, string continuationToken)
+        {
+            _items = items;
+            _continuationToken = continuationToken;
+        }
+
+        #region Properties
+
+        private readonly IEnumerable<TEntity> _items;
+        /// <summary>
+        /// The collection of objects belonging to this page.
+        /// </summary>
+        public IEnumerable<TEntity> Items { get { return _items; } }
+
+        private readonly string _continuationToken;
+        /// <summary>
+        /// The token that can be used to fetch the next page.
+        /// </summary>
+        public string ContinuationToken { get { return _continuationToken; } }
+
+        #endregion
+    }
 }
