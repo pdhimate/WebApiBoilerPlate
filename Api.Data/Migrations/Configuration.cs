@@ -32,7 +32,8 @@ namespace Api.Data.Migrations
             InsertAdminUser(context);
 
             // Cosmos db seeding
-            InsertAdminUserPost(context);
+            // TODO: implement with async await
+            // InsertAdminUserPost(context);
         }
 
         #region Private helpers
@@ -192,24 +193,24 @@ namespace Api.Data.Migrations
             }
         }
 
-        private readonly string AdminUserFirstPostGUID = "DA5B3550-659A-4DA2-A5E1-27353F52AA64";
-        private void InsertAdminUserPost(AppDatabaseContext context)
-        {
-            var adminUser = context.Users.First(u => u.Email == AdminEmail);
+        //private readonly string AdminUserFirstPostGUID = "DA5B3550-659A-4DA2-A5E1-27353F52AA64";
+        //private void InsertAdminUserPost(AppDatabaseContext context)
+        //{
+        //    var adminUser = context.Users.First(u => u.Email == AdminEmail);
 
-            using (var client = CosmosDbHelper.GetDocumentClient())
-            {
-                var postRepo = new TextPostRepo(client);
-                var existingPost = new TextPost
-                {
-                    CreatedByUserId = adminUser.Id,
-                    CreatedByUserName = adminUser.FirstName + adminUser.LastName,
-                    Note = "This is the first text post, posted on behalf of the admin user while seeding the database!",
-                    Id = AdminUserFirstPostGUID
-                };
-                postRepo.InsertOrUpdateAsync(existingPost).Wait();
-            }
-        }
+        //    using (var client = CosmosDbHelper.GetDocumentClient())
+        //    {
+        //        var postRepo = new TextPostRepo(client);
+        //        var existingPost = new TextPost
+        //        {
+        //            CreatedByUserId = adminUser.Id,
+        //            CreatedByUserName = adminUser.FirstName + adminUser.LastName,
+        //            Note = "This is the first text post, posted on behalf of the admin user while seeding the database!",
+        //            Id = AdminUserFirstPostGUID
+        //        };
+        //        postRepo.InsertOrUpdateAsync(existingPost).Wait();
+        //    }
+        //}
 
         #endregion
     }
