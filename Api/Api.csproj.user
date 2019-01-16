@@ -4,6 +4,11 @@
     <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort>44317</IISExpressSSLPort>
     <ProjectView>ProjectFiles</ProjectView>
+    <Use64BitIISExpress />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

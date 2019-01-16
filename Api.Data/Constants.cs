@@ -37,7 +37,7 @@
 
         public class DefaultUsers
         {
-            public static string AdminUserName { get { return "Admin"; } }
+            public static string AdminUserName { get { return "YourAdminUserEmail@SomeEmailProvider.com"; } }
         }
 
         public class CosmosDb

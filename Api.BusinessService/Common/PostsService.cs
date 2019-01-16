@@ -50,7 +50,9 @@ namespace Api.BusinessService.Common
             if (isFirstPageReq)
             {
                 filters = new List<Expression<Func<TextPost, bool>>>();
-                // although incidentally userId is also partition key, this serves as a reference to implement filters with pagination
+                
+                // Although incidentally userId is also partition key, this serves as a reference to implement filters with pagination
+                // Note: Only paths included for indexing in the collection, can be added here as filters.
                 filters.Add(p => p.CreatedByUserId == userId); // user can see only his posts 
 
                 // you may add more filters as desired here

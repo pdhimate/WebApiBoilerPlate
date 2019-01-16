@@ -19,7 +19,7 @@ namespace Api.Data.Migrations
         /// <summary>
         /// A logical partition key, which would be appropriately used for physical partitioning by CosmosDb
         /// </summary>
-        public const string PartitionKeyPath = "/UserId";
+        public const string PartitionKeyPath = "/CreatedByUserId";
 
         #endregion
 
@@ -27,7 +27,7 @@ namespace Api.Data.Migrations
         {
             using (var client = CosmosDbHelper.GetDocumentClient())
             {
-                await CreateActivitiesCollectionAsync(client);
+                await CreatePostsCollectionAsync(client);
             }
         }
 
@@ -37,7 +37,7 @@ namespace Api.Data.Migrations
         /// Creates activities collection if it does not already exist 
         /// </summary>
         /// <returns></returns>
-        private async Task CreateActivitiesCollectionAsync(DocumentClient client)
+        private async Task CreatePostsCollectionAsync(DocumentClient client)
         {
             var collection = new DocumentCollection
             {
@@ -51,15 +51,13 @@ namespace Api.Data.Migrations
             collection.IndexingPolicy.ExcludedPaths.Add(new ExcludedPath { Path = "/*" }); // exclude all properties by default
 
             collection.IndexingPolicy.IncludedPaths.Add(new IncludedPath { Path = $"/CreatedOnUtc/?" }); // TODO: not sure if we need this indexed
-            collection.IndexingPolicy.IncludedPaths.Add(new IncludedPath { Path = $"/SchoolId/?" });
+            collection.IndexingPolicy.IncludedPaths.Add(new IncludedPath { Path = $"/CreatedByUserId/?" });
             collection.IndexingPolicy.IncludedPaths.Add(new IncludedPath { Path = $"/CreatedByUser/?" });
-            collection.IndexingPolicy.IncludedPaths.Add(new IncludedPath { Path = $"/ActivitySpecificName/?" });
-            collection.IndexingPolicy.IncludedPaths.Add(new IncludedPath { Path = $"/Students/Id/?" });
 
             // Set throughput
             var options = new RequestOptions
             {
-                OfferThroughput = 400, // Default value is 10000. Currently set to minimum value to keep costs low.
+                OfferThroughput = 400, // Default value is 10000. Currently set to minimum value to keep costs low on Azure.
             };
 
             // Create

@@ -30,6 +30,7 @@ namespace Api.Data.Migrations
             // SQL server seeding
             InsertMandatoryData(context);
             InsertAdminUser(context);
+            InsertTestUser(context);
 
             // Cosmos db seeding
             // TODO: implement with async await
@@ -130,7 +131,7 @@ namespace Api.Data.Migrations
             activeClient.IsActive = true;
             activeClient.Name = "Website";
             activeClient.RefreshTokenLifeTime = 365 * 24 * 60; // 1 year
-            activeClient.Secret = Encryptor.GetHash(Guid.NewGuid().ToString());
+            activeClient.Secret = Encryptor.GetHash("11902180-A110-4DE1-808E-1729E5FF9A5C"); // Ideally this must not be hard coded but generated at client side, while adding new client
 
             // For integration tests only
             var inactiveClient = new Client();
@@ -140,7 +141,7 @@ namespace Api.Data.Migrations
             inactiveClient.IsActive = false;
             inactiveClient.Name = " Website inactive";
             inactiveClient.RefreshTokenLifeTime = 365 * 24 * 60; // 1 year
-            inactiveClient.Secret = Encryptor.GetHash(Guid.NewGuid().ToString());
+            inactiveClient.Secret = Encryptor.GetHash("DB7DDCC5-BDBD-4F39-88D5-6CC1D58AD792");
 
             var nativeActiveClient = new Client();
             nativeActiveClient.Id = "AndroidApp";
@@ -169,13 +170,13 @@ namespace Api.Data.Migrations
             // Add user
             var user = new AppUser
             {
-                UserName = Data.Constants.DefaultUsers.AdminUserName,
+                UserName = AdminEmail,
                 Email = AdminEmail,
                 EmailConfirmed = true,
                 FirstName = "Administrator",
                 CreatedOnUtc = DateTime.UtcNow,
             };
-            userManager.Create(user, "abcd12#$");
+            userManager.Create(user, "abcdEF1234#$");
 
             // Assign Admin role to the user
             var adminUser = userManager.FindByEmail(user.Email);
@@ -192,6 +193,25 @@ namespace Api.Data.Migrations
                 context.SaveChanges();
             }
         }
+
+        private void InsertTestUser(AppDatabaseContext context)
+        {
+            var userStore = new UserStore<AppUser, AppRole, long, ExternalUserLogin, AppUserAppRoleMapping, AppUserClaim>(context);
+            var userManager = new UserManager<AppUser, long>(userStore);
+
+            // Add user
+            var user = new AppUser
+            {
+                UserName = "jack_test_user@YourEmailProvider.com",
+                Email = "jack_test_user@YourEmailProvider.com",
+                EmailConfirmed = true,
+                FirstName = "Jack",
+                LastName = "Test user",
+                CreatedOnUtc = DateTime.UtcNow,
+            };
+            userManager.Create(user, "abcdEF1234#$");
+        }
+
 
         //private readonly string AdminUserFirstPostGUID = "DA5B3550-659A-4DA2-A5E1-27353F52AA64";
         //private void InsertAdminUserPost(AppDatabaseContext context)
