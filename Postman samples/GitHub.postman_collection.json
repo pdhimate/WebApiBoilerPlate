@@ -1,0 +1,227 @@
+{
+	"info": {
+		"_postman_id": "c8fb6e59-7016-4b81-a17e-faecb2d10d8f",
+		"name": "GitHub",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Web Api Boiler Plate",
+			"item": [
+				{
+					"name": "User exits",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"emailId\": \"assb@gmail.com\"\r\n}"
+						},
+						"url": {
+							"raw": "https://localhost/api/api/Account/UserExists",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"api",
+								"Account",
+								"UserExists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User's bearer access token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "304090ff-05bb-48ac-b99e-7075015eb84f",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"AccessToken\", jsonData.access_token);",
+									"postman.setGlobalVariable(\"RefreshToken\", jsonData.refresh_token);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "jack_test_user@YourEmailProvider.com",
+									"description": "YourAdminUserEmail@SomeEmailProvider.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "abcdEF1234#$",
+									"description": "jack_test_user@YourEmailProvider.com",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "AndroidApp",
+									"description": "AngularWebApp",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "client_secret",
+									"value": "291AAC03-62F5-4796-88EA-E482BC004FC5",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "client_id",
+									"value": "AngularWebApp",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost/api/api/token",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"api",
+								"token"
+							]
+						},
+						"description": "User is the resource owner and fetched the access token by using his UserName and Password"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Text Post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "304090ff-05bb-48ac-b99e-7075015eb84f",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AccessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"note\": \"This is a sample Text only post 1.\"\r\n}"
+						},
+						"url": {
+							"raw": "https://localhost/api/api/Posts/TextPost",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"api",
+								"Posts",
+								"TextPost"
+							]
+						},
+						"description": "User is the resource owner and fetched the access token by using his UserName and Password"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Text posts by page",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "304090ff-05bb-48ac-b99e-7075015eb84f",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{AccessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"continuationToken\": null\r\n}"
+						},
+						"url": {
+							"raw": "https://localhost/api/api/Posts/Page",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"api",
+								"Posts",
+								"Page"
+							]
+						},
+						"description": "User is the resource owner and fetched the access token by using his UserName and Password"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
