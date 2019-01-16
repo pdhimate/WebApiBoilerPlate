@@ -1,5 +1,6 @@
 ﻿using Api.Data.Access.Repositories;
 using Api.Data.Access.Repositories.Security;
+using Api.Data.CosmosDb.Repositories;
 using Api.Data.Models;
 
 namespace Api.Data.Access
@@ -10,7 +11,7 @@ namespace Api.Data.Access
     /// </summary>  
     public interface IUnitOfWork
     {
-        #region Repositories
+        #region SQL Server Repositories
 
         IAppRoleRepository AppRoles { get; }
         IAppUserAppRoleMappingRepo AppUserRoleMap { get; }
@@ -21,6 +22,12 @@ namespace Api.Data.Access
         IUserRepository AppUsers { get; }
 
         IExternalUserLoginRepository ExternalUserLogins { get; }
+
+        #endregion
+
+        #region Cosmos Repositories
+
+        ITextPostRepo TextPostRepo { get; }
 
         #endregion
 

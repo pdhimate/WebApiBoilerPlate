@@ -17,6 +17,7 @@ namespace Api.BusinessService
             registerComponent.RegisterType<IUserService, UserService>();
             registerComponent.RegisterType<IAccountService, AccountService>();
             registerComponent.RegisterType<IRefreshTokenService, RefreshTokenService>();
+            registerComponent.RegisterType<IPostsService, PostsService>();
         }
     }
 }

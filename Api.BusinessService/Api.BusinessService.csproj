@@ -70,6 +70,8 @@
     <Compile Include="Common\AccountService.cs" />
     <Compile Include="BaseService.cs" />
     <Compile Include="BusinnessException.cs" />
+    <Compile Include="Common\IPostsService.cs" />
+    <Compile Include="Common\PostsService.cs" />
     <Compile Include="DependencyComponent.cs" />
     <Compile Include="Common\IAccountService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

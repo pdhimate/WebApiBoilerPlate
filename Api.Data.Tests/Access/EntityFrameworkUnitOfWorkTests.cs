@@ -10,7 +10,7 @@ namespace Api.Data.IntegrationTests.Access
         [Test]
         public void AdminUserMustExists_InDatabase()
         {
-            using (var uow = new EntityFrameworkUnitOfWork())
+            using (var uow = new UnitOfWork())
             {
                 var users = uow.AppUsers.GetUsers(1, 1);
 

@@ -13,7 +13,7 @@ namespace Api.Data
     {
         public void Setup(IRegisterComponent registerComponent)
         {
-            registerComponent.RegisterTypeWithTransientLifetime<IUnitOfWork, EntityFrameworkUnitOfWork>();
+            registerComponent.RegisterTypeWithTransientLifetime<IUnitOfWork, UnitOfWork>();
         }
     }
 }

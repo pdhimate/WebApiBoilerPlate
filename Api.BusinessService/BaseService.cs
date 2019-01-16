@@ -1,10 +1,12 @@
 ﻿using Api.BusinessEntities;
 using Api.BusinessEntities.AccountController;
 using Api.BusinessEntities.Common;
+using Api.BusinessEntities.PostsController;
 using Api.BusinessEntities.RefreshTokenController;
 using Api.BusinessEntities.UserController;
 using Api.Data.Access;
 using Api.Data.Access.Repositories;
+using Api.Data.CosmosDb.Models;
 using Api.Data.Models;
 using Api.Data.Models.Security;
 using AutoMapper;
@@ -37,6 +39,7 @@ namespace Api.BusinessService
         {
             Mapper.Initialize(config =>
             {
+                // SQLserver models
                 config.CreateMap<AppUser, RegisterUserReq>(MemberList.Destination);
                 config.CreateMap<AppUser, ProfileDto>(MemberList.Destination);
                 config.CreateMap<AppUser, UserResDto>(MemberList.Destination);
@@ -44,6 +47,11 @@ namespace Api.BusinessService
 
                 config.CreateMap<RefreshToken, RefreshTokenRes>(MemberList.Destination);
                 config.CreateMap<Page<RefreshToken>, PagedRes<RefreshTokenRes>>(MemberList.Destination);
+
+                // Cosmos Db models
+                config.CreateMap<CreateTextPostReq, TextPost>(MemberList.Destination);
+                config.CreateMap<TextPost, TextPostRes>(MemberList.Destination);
+
             });
         }
 

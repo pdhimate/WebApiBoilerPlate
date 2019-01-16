@@ -207,6 +207,25 @@
             The appsettings key for the ResetPasswordPage's path on the GUI website.
             </summary>
         </member>
+        <member name="T:Api.Controllers.PostsController">
+            <summary>
+            Provides API for adding, fetching Posts.
+            </summary>
+        </member>
+        <member name="M:Api.Controllers.PostsController.TextPost(Api.BusinessEntities.PostsController.CreateTextPostReq)">
+            <summary>
+            Creates a new TextPost 
+            </summary>
+            <param name="req"></param>
+            <returns>The newly created text post</returns>
+        </member>
+        <member name="M:Api.Controllers.PostsController.Page(Api.BusinessEntities.PagedReqC)">
+            <summary>
+            Gets TextPosts in a paginated fashion
+            </summary>
+            <param name="req"></param>
+            <returns>Page of posts</returns>
+        </member>
         <member name="M:Api.Controllers.Admin.RefreshTokenController.Tokens(Api.BusinessEntities.Common.PagedReqDto)">
             <summary>
             Gets the refresh tokens on the specified page.
