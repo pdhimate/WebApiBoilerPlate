@@ -27,5 +27,7 @@ namespace Api.Data.CosmosDb.Models
         /// </summary>
         [JsonExtensionData]
         public IDictionary<string, JToken> UnmappedData { get; set; }
+
+        public DateTime CreatedOnUtc { get; set; } = DateTime.UtcNow;
     }
 }

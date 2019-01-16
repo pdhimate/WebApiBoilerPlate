@@ -14,8 +14,6 @@ namespace Api.Data.CosmosDb.Models
         /// </summary>
         public string Note { get; set; }
 
-        public DateTime CreatedOnUtc { get; set; } = DateTime.UtcNow;
-
 
         public long CreatedByUserId { get; set; }
 

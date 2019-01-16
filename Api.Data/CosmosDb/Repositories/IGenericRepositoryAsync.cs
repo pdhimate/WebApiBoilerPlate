@@ -44,6 +44,17 @@ namespace Api.Data.CosmosDb.Repositories
         /// <returns></returns>
         Task<PageC<TEntity>> GetPageAsync(string continuationToken, List<Expression<Func<TEntity, bool>>> filters);
 
+        /// <summary>
+        /// Gets the page in descending order
+        /// </summary>
+        /// <typeparam name="TPartitionKey"></typeparam>
+        /// <param name="continuationToken"></param>
+        /// <param name="partitionKey"></param>
+        /// <param name="filters"></param>
+        /// <returns></returns>
+        Task<PageC<TEntity>> GetPageDescendingAsync<TPartitionKey>(string continuationToken,
+            long partitionKey, List<Expression<Func<TEntity, bool>>> filters);
+
         #endregion
 
         #region Upsert

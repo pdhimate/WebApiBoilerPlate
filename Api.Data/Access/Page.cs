@@ -51,6 +51,7 @@ namespace Api.Data.Access
 
     /// <summary>
     /// Provides for paginated results for Cosmos db.
+    /// C for cosmosDb.
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     public class PageC<TEntity>

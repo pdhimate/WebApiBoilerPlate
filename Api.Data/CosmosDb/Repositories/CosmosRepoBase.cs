@@ -114,6 +114,50 @@ namespace Api.Data.CosmosDb.Repositories
             return res;
         }
 
+        public async Task<PageC<TEntity>> GetPageDescendingAsync<TPartitionKey>(string continuationToken, 
+            long partitionKey, List<Expression<Func<TEntity, bool>>> filters)
+        {
+            // Create query feed options
+            var feedOptions = new FeedOptions
+            {
+                MaxItemCount = Constants.CosmosDb.PaginationPageSize,
+                PartitionKey = new PartitionKey(partitionKey),
+                RequestContinuation = continuationToken // This will be not null, in case there was a previous request made
+            };
+
+            // TODO: fix the where see: https://stackoverflow.com/questions/51226966/logical-and-for-linq-to-cosmosdb-sql-api
+            // Combine all filter by ANDing them
+            Expression<Func<TEntity, bool>> combinedFilter = null;
+            if (filters != null && filters.Count > 0)
+            {
+                combinedFilter = filters[0];
+                foreach (var f in filters.Skip(1))
+                {
+                    combinedFilter = combinedFilter.And(f);
+                }
+            }
+
+            // Construct query
+            var collection = await GetCollectionAsync();
+            var query = Client.CreateDocumentQuery<TEntity>(collection.SelfLink, feedOptions)
+                .Where(combinedFilter ?? (a => true))
+                .OrderByDescending(a => a.CreatedOnUtc) // TODO: explore if this is optimal and indexing is needed
+                .AsDocumentQuery();
+
+            // Fetch the page and set continuation token if there is another page
+            continuationToken = null;
+            var page = await query.ExecuteNextAsync<TEntity>();
+            var queryResult = page.ToList();
+            if (query.HasMoreResults)
+            {
+                continuationToken = page.ResponseContinuation;
+            }
+
+            // Create paged response
+            var res = new PageC<TEntity>(queryResult, continuationToken);
+            return res;
+        }
+
         #endregion
 
         #region Upsert

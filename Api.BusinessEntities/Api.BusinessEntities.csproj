@@ -60,6 +60,8 @@
     <Compile Include="AccountController\RegisterExternalUserDto.cs" />
     <Compile Include="AccountController\RegisterPhoneNumberDto.cs" />
     <Compile Include="AccountController\RegisterUserDto.cs" />
+    <Compile Include="PaginationDtos.cs" />
+    <Compile Include="PostsController\TextPostDtos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AccountController\ResetPasswordDto.cs" />
     <Compile Include="RefreshTokenController\DeleteRefreshTokenDto.cs" />
