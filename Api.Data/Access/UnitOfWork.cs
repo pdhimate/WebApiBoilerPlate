@@ -19,6 +19,7 @@ namespace Api.Data.Access
 
         private readonly AppDatabaseContext _context;
 
+       private static readonly object documentClientlock = new object();
         private DocumentClient _documentClient;
         /// <summary>
         /// Cosmos db client
@@ -30,8 +31,15 @@ namespace Api.Data.Access
             {
                 if (_documentClient == null)
                 {
-                    _documentClient = CosmosDbHelper.GetDocumentClient();
+                    lock (documentClientlock)
+                    {
+                        if (_documentClient == null)
+                        {
+                            _documentClient = CosmosDbHelper.GetDocumentClient();
+                        }
+                    }
                 }
+
                 return _documentClient;
             }
         }
